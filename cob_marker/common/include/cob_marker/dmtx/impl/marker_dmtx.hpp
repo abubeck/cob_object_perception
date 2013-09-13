@@ -68,11 +68,13 @@ bool Marker_DMTX::findPattern(const sensor_msgs::Image &img, std::vector<SMarker
 	  pack = DmtxPack8bppK;
   else if((img.encoding == sensor_msgs::image_encodings::RGB16))
 	  pack = DmtxPack16bppRGB;
+  else if((img.encoding == sensor_msgs::image_encodings::BGR8))
+  	  pack = DmtxPack24bppRGB;
   else if((img.encoding == sensor_msgs::image_encodings::BGR16))
   	  pack = DmtxPack16bppBGR;
   else
   {
-	  ROS_ERROR("Unsupported Image encoding Format");
+	  ROS_ERROR_STREAM("Unsupported Image encoding Format: " << img.encoding);
 	  return false;
   }
 
